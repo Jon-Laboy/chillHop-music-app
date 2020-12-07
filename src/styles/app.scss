@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Sedgwick+Ave+Display&display=swap');
+* {
+    margin: 0;
+    padding: 0; 
+    box-sizing: border-box;
+}
+
+.title{
+    display: flex;
+    justify-content: center;
+    font-family: 'Sedgwick Ave Display', cursive;
+    font-size: 3rem;
+    letter-spacing: .4rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+ 
+}
+h1,h2,h3 {
+    color:rgba(0, 0, 0, 0.678);
+}
+
+body {
+    font-family: "Lato", sans-serif;
+  }
+h3,h4 {
+    font-weight: 400;
+    color: rgb(100,100,100)
+}
+
+@import "./song";
+@import "./player"; 
+@import "./library";
+@import "./nav";
