@@ -1,7 +1,6 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlayCircle, faAngleLeft, faAngleRight, faPauseCircle } from '@fortawesome/free-solid-svg-icons'
-import { playAudio } from '../util'
+import { faPlayCircle, faAngleLeft, faAngleRight, faPauseCircle, faRandom, faRedoAlt, faUndo } from '@fortawesome/free-solid-svg-icons'
 
 const PlayerControls = ({
     songs,
@@ -33,24 +32,29 @@ const PlayerControls = ({
         setSongInfo({ ...songInfo, currentTime: e.target.value })
     }
 
-    const skipTrackHandler = (direction) => {
+    const skipTrackHandler = async (direction) => {
         const currentIndex = songs.findIndex(song => song.id === currentSong.id)
         if (direction === "skip-forward") {
             //setcurrent song to the index + 1 for next song then use % to go back to index of 0 when reach last index
-            setCurrentSong(songs[(currentIndex + 1) % songs.length]);
+            await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
         } if (direction === "skip-back") {
-            //once on index of 0 (first song) and -1 again that will equal -1 if so..then set the current song to the songs with the index of songs.length -1 which gives the highest index in array
+            //once on index of 0 (first song) and - 1 again that will equal -1 if so..then set the current song to the songs with the index of songs.length -1 which gives the highest index in array
             if ((currentIndex - 1) % songs.length === -1) {
-                setCurrentSong(songs[songs.length - 1])
-                //allows music to continue to play while skipping 
-                playAudio(isPlaying, audioRef)
+                await setCurrentSong(songs[songs.length - 1])
                 return;
             }
-            setCurrentSong(songs[currentIndex - 1]);
+            await setCurrentSong(songs[currentIndex - 1]);
         }
-        //allows music to continue to play while skipping 
-        playAudio(isPlaying, audioRef)
+        if (isPlaying) audioRef.current.play();
+
     }
+
+    const shuffleSongsHandler = async () => {
+        await setCurrentSong(songs[Math.floor(Math.random() * songs.length)])
+        if (isPlaying) audioRef.current.play();
+    }
+
+
 
     const animationPercentage = (songInfo.currentTime / songInfo.duration) * 100;
 
@@ -58,7 +62,7 @@ const PlayerControls = ({
         <div className="player-container">
             <div className="time-control">
                 <p>{formatTime(songInfo.currentTime)}</p>
-                <div style = {{background: `linear-gradient(to right, ${currentSong.color[0]}, ${currentSong.color[1]})`}}className="track">
+                <div style={{ background: `linear-gradient(to right, ${currentSong.color[0]}, ${currentSong.color[1]})` }} className="track">
                     <input type="range"
                         min={0}
                         max={songInfo.duration}
@@ -75,6 +79,12 @@ const PlayerControls = ({
                 <FontAwesomeIcon onClick={() => skipTrackHandler("skip-back")} className="skip-back" icon={faAngleLeft} size="2x" />
                 <FontAwesomeIcon onClick={handlePlayPause} className="play" icon={isPlaying ? faPauseCircle : faPlayCircle} size="2x" />
                 <FontAwesomeIcon onClick={() => skipTrackHandler("skip-forward")} className="skip-forward" icon={faAngleRight} size="2x" />
+            </div>
+            <div className="shuffle-btn">
+                {/* <FontAwesomeIcon onClick={} className="shuffle" icon={faUndo} size="2x" />        */}
+                <FontAwesomeIcon onClick={shuffleSongsHandler} className="shuffle" icon={faRandom} size="2x" />
+                {/* <FontAwesomeIcon onClick={} className="shuffle" icon={faRedoAlt} size="2x" /> */}
+
             </div>
         </div>
     )

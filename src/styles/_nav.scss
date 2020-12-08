@@ -3,16 +3,29 @@ nav {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    background: #252425; 
+   
     button {
         background: transparent;
-        border: 2px solid rgb(65, 65, 65); 
+        color: white;
+        font-weight: bold;
+        border-radius: 3px; 
+        border: 2px solid white; 
         cursor: pointer;
         padding: 0.5rem; 
         transition: all 0.4s ease;
         &:hover {
-            background: rgb(65, 65, 65);
-            color: white; 
+            background: white;
+            color: black; 
         }
 
+    }
+}
+
+@media screen and (max-width: 768px) {
+    nav {
+        button {
+            z-index: 10;
+        }
     }
 }

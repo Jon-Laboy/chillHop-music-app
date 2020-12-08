@@ -4,14 +4,16 @@
     left: 0;
     width: 20rem;
     height: 100%;
-    background: white; 
-    box-shadow: 2px 2px 50px rgba(204,204,204);
+    background: #252425; 
+    box-shadow: 2px 2px 50px rgba(204, 204, 204, 0.384);
     overflow: scroll; 
     transform: translateX(-100%);
     transition: all 0.5s ease;
     opacity: 0;
     h2 {
         padding:2rem;
+        color:white;
+        letter-spacing: .12rem; 
     }
 }
 
@@ -19,16 +21,24 @@
     display: flex; 
     align-items: center;
     padding: 1rem 2rem 1rem 2rem; 
+    background: #252425; 
     cursor: pointer;
+    transition: background 0.5s ease ;
     img {
         width: 30%;
         border-radius: 5px;
-        box-shadow: 5px 15px 10px rgba(0, 0, 0, 0.247),
-        -5px 5px 10px rgba(206, 205, 205, 0.979);
+        border: .1px solid white; 
+        // box-shadow: 5px 15px 10px,
+        // -5px 5px 10px white;
         ; 
     }
     &:hover {
-        background: rgb(209, 209, 255);
+        // background: rgba(255, 255, 255, 0.692);
+        background: rgba(255, 255, 255, 0.836);  
+        h3,h4 {
+            color: black;
+            font-weight: bold; 
+        }
     }
 }
 
@@ -36,16 +46,20 @@
     padding-left: 1rem;
     h3 {
         font-size: 1rem;
+        color:white;
+        font-weight: bold; 
     }
     h4 {
         font-size: .7rem;
+        color:white;
+        font-weight: bold; 
     }
 }
 
-// * {
-//     scrollbar-width: thin;
-//     scrollbar-color: rgba(155,155,155,0.5) transparent;
-// }
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(155,155,155,0.5) transparent;
+}
 
 *::-webkit-scrollbar {
     width:5px
@@ -54,16 +68,26 @@
     background: transparent;
 }
 *::-webkit-scrollbar-thumb {
-    background-color: rgba(155,155,155,0.5);
+    background-color: rgba(255, 255, 255, 0.651);
     border-radius: 20px;
     border: transparent;
 }
 
 .selected {
-    background: rgb(203, 220, 243); 
+    background: white;
+    h3,h4 {
+        color: black;
+        font-weight: bold; 
+    }
 }
 
 .active-library {
     transform: translateX(0%);
     opacity: 1; 
+}
+
+@media screen and (max-width: 768px) {
+    .library {
+        width: 100%;
+    }
 }

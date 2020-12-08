@@ -1,21 +1,11 @@
 import React from 'react';
-import {playAudio} from '../util';
 
 const LibrarySong = ({ isPlaying, audioRef, songs, setSongs, currentSong, setCurrentSong, song }) => {
 
-    const handleSongSelect = () => {
-        setCurrentSong(song)
+    const handleSongSelect = async () => {
+        await setCurrentSong(song)
+        if (isPlaying) audioRef.current.play();
 
-        // setSongs(
-        //     songs.map((targetSong) => {
-        //         return {
-        //             ...targetSong,
-        //             active: targetSong.id === song.id
-        //         }
-        //     }
-        //     )
-        // )
-      playAudio(isPlaying, audioRef)
     }
 
     return (

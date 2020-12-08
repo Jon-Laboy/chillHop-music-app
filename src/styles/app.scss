@@ -3,13 +3,15 @@
     margin: 0;
     padding: 0; 
     box-sizing: border-box;
+    
 }
 
 .title{
     display: flex;
     justify-content: center;
+    color: white;
     font-family: 'Sedgwick Ave Display', cursive;
-    font-size: 3rem;
+    font-size: 2rem;
     letter-spacing: .4rem;
     margin-top: 2rem;
     margin-bottom: 2rem;
@@ -21,10 +23,20 @@ h1,h2,h3 {
 
 body {
     font-family: "Lato", sans-serif;
+    background: #252425; 
+
   }
 h3,h4 {
     font-weight: 400;
     color: rgb(100,100,100)
+}
+
+.App {
+    transition: all 0.5s ease; 
+}
+
+.library-active {
+    margin-left: 30%;
 }
 
 @import "./song";

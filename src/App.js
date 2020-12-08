@@ -29,14 +29,34 @@ function App() {
     setSongInfo({ ...songInfo, currentTime: current, duration })
   }
 
+   // skip back and forward 10 seconds 
+//    const tenSecondHandler = (direction, e) {
+//     const current = e.target.currentTime;
+//     if(direction === "forward-ten") { 
+//         await setCurrentSong()
+//     }
+// }
+
+  //Auto skip to next song when song ends 
+  const handleSongEnd = async() => {
+    const currentIndex = songs.findIndex(song => song.id === currentSong.id)
+    await setCurrentSong(songs[(currentIndex + 1) % songs.length] )
+    //play the next song if playing previous song 
+    if(isPlaying) audioRef.current.play(); 
+  }
+
   return (
-    <div className="App">
+    <div className={`App ${libraryStatus ? "library-active" : ""}`}>
       {/* <h1 className="title" >Chill-Hop</h1> */}
       <Nav 
       libraryStatus={libraryStatus} 
       setLibraryStatus={setLibraryStatus} 
       /> 
-      <Song currentSong={currentSong} />
+      <Song 
+      currentSong={currentSong}
+      songInfo={songInfo}
+      isPlaying={isPlaying}
+       />
       <PlayerControls 
       songs={songs} 
       songInfo={songInfo} 
@@ -64,7 +84,9 @@ function App() {
         //have song time loaded on load instead of when clicking play
         onLoadedMetadata={handleTimeUpdate}
         src={currentSong.audio}
-        ref={audioRef}>
+        ref={audioRef}
+        onEnded={handleSongEnd}
+        >
       </audio>
     </div>
   );

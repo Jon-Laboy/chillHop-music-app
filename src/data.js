@@ -2,13 +2,14 @@ import { v4 as uuidv4 } from "uuid";
 function chillHop() {
   return [
     {
-      name: "Woods",
-      artist: "Miscél",
-      cover: "https://chillhop.com/wp-content/uploads/2020/07/00c8a4345165a8caf49d821209e29d89296f6d6a-1024x1024.jpg",
+      name: "Keep Going",
+      cover:
+        "https://chillhop.com/wp-content/uploads/2020/07/ff35dede32321a8aa0953809812941bcf8a6bd35-1024x1024.jpg",
+      artist: "Swørn",
+      audio: "https://mp3.chillhop.com/serve.php/?mp3=9222",
+      color: ["#CD607D", "#c94043"],
       id: uuidv4(),
       active: false,
-      color: ["#E43055", "#00626B"],
-      audio: "https://mp3.chillhop.com/serve.php/?mp3=7958",
     },
     {
       name: "Silience",
@@ -20,13 +21,14 @@ function chillHop() {
       audio: "https://mp3.chillhop.com/serve.php/?mp3=8425",
     },
     {
-      name: "Zenith",
-      artist: "Leavv",
-      cover: "https://chillhop.com/wp-content/uploads/2020/09/88e7eb711f8c71d87fc102e97cf91e36f692348d-1024x1024.jpg",
+      name: "Daylight",
+      cover:
+        "https://chillhop.com/wp-content/uploads/2020/07/ef95e219a44869318b7806e9f0f794a1f9c451e4-1024x1024.jpg",
+      artist: "Aiguille",
+      audio: "https://mp3.chillhop.com/serve.php/?mp3=9272",
+      color: ["#EF8EA9", "#ab417f"],
       id: uuidv4(),
       active: false,
-      color: ["#D6E6A7", "#235550"],
-      audio: "https://mp3.chillhop.com/serve.php/?mp3=9927",
     },
     {
       name: "Going Back",
@@ -36,6 +38,24 @@ function chillHop() {
       active: false,
       color: ["#345281", "#414149"],
       audio: "https://mp3.chillhop.com/serve.php/?mp3=10310",
+    },
+    {
+      name: "Woods",
+      artist: "Miscél",
+      cover: "https://chillhop.com/wp-content/uploads/2020/07/00c8a4345165a8caf49d821209e29d89296f6d6a-1024x1024.jpg",
+      id: uuidv4(),
+      active: false,
+      color: ["#E43055", "#00626B"],
+      audio: "https://mp3.chillhop.com/serve.php/?mp3=7958",
+    },
+    {
+      name: "Zenith",
+      artist: "Leavv",
+      cover: "https://chillhop.com/wp-content/uploads/2020/09/88e7eb711f8c71d87fc102e97cf91e36f692348d-1024x1024.jpg",
+      id: uuidv4(),
+      active: false,
+      color: ["#D6E6A7", "#235550"],
+      audio: "https://mp3.chillhop.com/serve.php/?mp3=9927",
     },
     {
       name: "Smooth Wit' Any Groove",
@@ -64,26 +84,6 @@ function chillHop() {
       active: false,
       color: ["#6E5984", "#E2C6D4"],
       audio: "https://mp3.chillhop.com/serve.php/?mp3=10333"
-    },
-    {
-      name: "Daylight",
-      cover:
-        "https://chillhop.com/wp-content/uploads/2020/07/ef95e219a44869318b7806e9f0f794a1f9c451e4-1024x1024.jpg",
-      artist: "Aiguille",
-      audio: "https://mp3.chillhop.com/serve.php/?mp3=9272",
-      color: ["#EF8EA9", "#ab417f"],
-      id: uuidv4(),
-      active: false,
-    },
-    {
-      name: "Keep Going",
-      cover:
-        "https://chillhop.com/wp-content/uploads/2020/07/ff35dede32321a8aa0953809812941bcf8a6bd35-1024x1024.jpg",
-      artist: "Swørn",
-      audio: "https://mp3.chillhop.com/serve.php/?mp3=9222",
-      color: ["#CD607D", "#c94043"],
-      id: uuidv4(),
-      active: false,
     },
     {
       name: "Nightfall",
