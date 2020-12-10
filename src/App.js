@@ -20,7 +20,9 @@ function App() {
   }
   );
   const [libraryStatus, setLibraryStatus] = useState(false); 
+  const [shuffleState, setShuffleState] = useState(false); 
 
+  console.log(shuffleState)
 
   //Update song time as it plays 
   const handleTimeUpdate = (e) => {
@@ -29,18 +31,19 @@ function App() {
     setSongInfo({ ...songInfo, currentTime: current, duration })
   }
 
-   // skip back and forward 10 seconds 
-//    const tenSecondHandler = (direction, e) {
-//     const current = e.target.currentTime;
-//     if(direction === "forward-ten") { 
-//         await setCurrentSong()
-//     }
-// }
 
-  //Auto skip to next song when song ends 
+  //Auto skip to next song when song ends OR random song if shuffle btn selected
   const handleSongEnd = async() => {
-    const currentIndex = songs.findIndex(song => song.id === currentSong.id)
-    await setCurrentSong(songs[(currentIndex + 1) % songs.length] )
+    if(shuffleState===false) {
+      const currentIndex = songs.findIndex(song => song.id === currentSong.id)
+      await setCurrentSong(songs[(currentIndex + 1) % songs.length] )
+    }
+  
+    if(shuffleState===true) {
+      await setCurrentSong(songs[Math.floor(Math.random() * songs.length)])
+ 
+     }
+      
     //play the next song if playing previous song 
     if(isPlaying) audioRef.current.play(); 
   }
@@ -67,7 +70,10 @@ function App() {
       songs={songs} 
       isPlaying={isPlaying} 
       setIsPlaying={setIsPlaying} 
-      setCurrentSong={setCurrentSong} 
+      setCurrentSong={setCurrentSong}
+      shuffleState= {shuffleState}
+      setShuffleState={setShuffleState}
+      handleSongEnd= {handleSongEnd} 
       />
       <Library 
       audioRef={audioRef} 
