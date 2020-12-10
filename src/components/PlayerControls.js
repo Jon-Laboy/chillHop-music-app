@@ -6,8 +6,8 @@ import {
   faAngleRight,
   faPauseCircle,
   faRandom,
-  faRedoAlt,
-  faUndo,
+  faUndoAlt,
+  faRedoAlt
 } from "@fortawesome/free-solid-svg-icons";
 
 const PlayerControls = ({
@@ -59,6 +59,14 @@ const PlayerControls = ({
     if (isPlaying) audioRef.current.play();
   };
 
+  //CODE THE 10 SECONDS TIME ICONS
+  // const forwardTenSec =() => {
+
+  // }
+
+  // const backTenSec =() => {
+    
+  // }
   return (
     <div className="player-container">
       <div className="time-control">
@@ -88,30 +96,41 @@ const PlayerControls = ({
           onClick={() => skipTrackHandler("skip-back")}
           className="skip-back"
           icon={faAngleLeft}
-          size="2x"
+          size="3x"
         />
         <FontAwesomeIcon
           onClick={handlePlayPause}
           className="play"
           icon={isPlaying ? faPauseCircle : faPlayCircle}
-          size="2x"
+          size="3x"
         />
         <FontAwesomeIcon
           onClick={() => skipTrackHandler("skip-forward")}
           className="skip-forward"
           icon={faAngleRight}
-          size="2x"
+          size="3x"
         />
       </div>
-      <div className={`shuffle-btn ${shuffleState ? "shuffle-selected" : ""}`}>
-        {/* <span> <FontAwesomeIcon className="back10" icon={faUndo} size="2x" style={{marginRight:"2rem"}}  />  </span>      */}
+      <div className="shuffle-row">
+        <FontAwesomeIcon 
+        className="back10" 
+        icon={faUndoAlt} 
+        size="2x"
+        style={{color:"white", cursor:"pointer", marginBottom:"1rem"}} 
+        />
         <FontAwesomeIcon
           onClick={()=> setShuffleState(!shuffleState)}
           icon={faRandom}
           size="2x"
+          style={{margin:"0rem 3rem 1rem 3rem", cursor:"pointer",color: shuffleState ? "rgb(218, 92, 92)" : "white"}}
         />
-       {/* <span> <FontAwesomeIcon  className="forward10" icon={faRedoAlt} size="2x" style={{marginLeft:"2rem"}} /></span> */}
-      </div>
+         <FontAwesomeIcon 
+         className="back10" 
+         icon={faRedoAlt} 
+         size="2x" 
+         style={{color:"white", cursor:"pointer", marginBottom:"1rem"}} 
+         />
+       </div>
     </div>
   );
 };
