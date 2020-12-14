@@ -20,9 +20,9 @@ function App() {
   }
   );
   const [libraryStatus, setLibraryStatus] = useState(false); 
-  const [shuffleState, setShuffleState] = useState(false); 
-
-  console.log(shuffleState)
+  const [shuffleState, setShuffleState] = useState(false);
+  const [loopState, setLoopState]  = useState(false); 
+  
 
   //Update song time as it plays 
   const handleTimeUpdate = (e) => {
@@ -30,7 +30,6 @@ function App() {
     const duration = e.target.duration;
     setSongInfo({ ...songInfo, currentTime: current, duration })
   }
-
 
   //Auto skip to next song when song ends OR random song if shuffle btn selected
   const handleSongEnd = async() => {
@@ -43,14 +42,17 @@ function App() {
       await setCurrentSong(songs[Math.floor(Math.random() * songs.length)])
  
      }
+     if(loopState===true) {
+      const currentIndex = songs.findIndex(song => song.id === currentSong.id)
+      await setCurrentSong(songs[currentIndex])
+     }
       
-    //play the next song if playing previous song 
+    //play the next song if previous song was playing
     if(isPlaying) audioRef.current.play(); 
   }
 
   return (
     <div className={`App ${libraryStatus ? "library-active" : ""}`}>
-      {/* <h1 className="title" >Chill-Hop</h1> */}
       <Nav 
       libraryStatus={libraryStatus} 
       setLibraryStatus={setLibraryStatus} 
@@ -73,7 +75,8 @@ function App() {
       setCurrentSong={setCurrentSong}
       shuffleState= {shuffleState}
       setShuffleState={setShuffleState}
-      handleSongEnd= {handleSongEnd} 
+      loopState={loopState}
+      setLoopState={setLoopState}
       />
       <Library 
       audioRef={audioRef} 

@@ -6,8 +6,7 @@ import {
   faAngleRight,
   faPauseCircle,
   faRandom,
-  faUndoAlt,
-  faRedoAlt
+  faUndoAlt
 } from "@fortawesome/free-solid-svg-icons";
 
 const PlayerControls = ({
@@ -19,9 +18,10 @@ const PlayerControls = ({
   setCurrentSong,
   isPlaying,
   setIsPlaying,
-  handleSongEnd,
   setShuffleState,
   shuffleState,
+  loopState,
+  setLoopState
 }) => {
   const animationPercentage = (songInfo.currentTime / songInfo.duration) * 100;
 
@@ -59,14 +59,7 @@ const PlayerControls = ({
     if (isPlaying) audioRef.current.play();
   };
 
-  //CODE THE 10 SECONDS TIME ICONS
-  // const forwardTenSec =() => {
 
-  // }
-
-  // const backTenSec =() => {
-    
-  // }
   return (
     <div className="player-container">
       <div className="time-control">
@@ -94,7 +87,6 @@ const PlayerControls = ({
       <div className="play-control">
         <FontAwesomeIcon
           onClick={() => skipTrackHandler("skip-back")}
-          className="skip-back"
           icon={faAngleLeft}
           size="3x"
         />
@@ -106,30 +98,22 @@ const PlayerControls = ({
         />
         <FontAwesomeIcon
           onClick={() => skipTrackHandler("skip-forward")}
-          className="skip-forward"
           icon={faAngleRight}
           size="3x"
         />
       </div>
       <div className="shuffle-row">
-        <FontAwesomeIcon 
-        className="back10" 
-        icon={faUndoAlt} 
-        size="2x"
-        style={{color:"white", cursor:"pointer", marginBottom:"1rem"}} 
-        />
         <FontAwesomeIcon
           onClick={()=> setShuffleState(!shuffleState)}
           icon={faRandom}
           size="2x"
           style={{margin:"0rem 3rem 1rem 3rem", cursor:"pointer",color: shuffleState ? "rgb(218, 92, 92)" : "white"}}
         />
-         <FontAwesomeIcon 
-         className="back10" 
-         icon={faRedoAlt} 
-         size="2x" 
-         style={{color:"white", cursor:"pointer", marginBottom:"1rem"}} 
-         />
+       <FontAwesomeIcon 
+        onClick={()=> setLoopState(!loopState)}
+        icon={faUndoAlt} 
+        size="2x"
+        style={{margin:"0rem 3rem 1rem 3rem", cursor:"pointer",color: loopState ? "rgb(218, 92, 92)" : "white"}}        />
        </div>
     </div>
   );

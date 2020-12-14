@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LibrarySong = ({ isPlaying, audioRef, songs, setSongs, currentSong, setCurrentSong, song }) => {
+const LibrarySong = ({ isPlaying, audioRef, currentSong, setCurrentSong, song }) => {
 
     const handleSongSelect = async () => {
         await setCurrentSong(song)
@@ -9,8 +9,6 @@ const LibrarySong = ({ isPlaying, audioRef, songs, setSongs, currentSong, setCur
     }
 
     return (
-        // To avoid the need for updating the active song in the library, you can just use the following code in the LibrarySong component instead of checking adding the class based on 'song.active':className={`library-song ${song.id === currentSong.id ? 'selected' : ''}`} and now don't need the setSongs under handleSongSelect
-
         <div className={`library-song  ${song.id === currentSong.id ? 'selected' : ''}`}
             onClick={handleSongSelect}>
             <img src={song.cover} />
